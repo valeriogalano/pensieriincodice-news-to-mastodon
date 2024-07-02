@@ -1,8 +1,7 @@
 import logging
 import os
 
-from oauthlib.oauth1 import OAuth1
-from requests_oauthlib import OAuth1Session
+from requests_oauthlib import OAuth1Session, OAuth1
 from tweepy.parsers import JSONParser
 
 TWEET_PARSER = JSONParser()
