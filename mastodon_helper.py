@@ -1,17 +1,17 @@
-import json
 import logging
 import os
 
 from oauthlib.oauth1 import OAuth1
 from requests_oauthlib import OAuth1Session
-from tweepy.parser import TweetParser
+from tweepy.parsers import JSONParser
 
-TWEET_PARSER = TweetParser()
+TWEET_PARSER = JSONParser()
 TOKEN_ENDPOINT = "https://api.mastodon.social/oauth/token"
 AUTHORIZE_ENDPOINT = "https://api.mastodon.social/oauth/authorize"
 API_URL = 'https://api.mastodon.social'
 
 logger = logging.getLogger("mastodon")
+
 
 class MastodonHelper:
     token = None
@@ -33,7 +33,10 @@ class MastodonHelper:
 
     def __send_mastodon_post(self, status: str):
         session = self._get_oauth_session()
-        response = session.post(f'{API_URL}/api/v1/statuses', params={'status': TWEET_PARSER.parse(status)}, json={"visibility": "public"})
+        response = session.post(
+            f'{API_URL}/api/v1/statuses', params={'status': TWEET_PARSER.parse(status)},
+            json={"visibility": "public"}
+        )
 
         if response.status_code != 200:
             raise Exception(f"Error sending status: {response.text}")
