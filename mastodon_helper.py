@@ -17,6 +17,7 @@ class MastodonHelper:
         logger.debug("Mastodon helper inizializzato!")
 
     def __send_mastodon_post(self, status: str):
+        logger.debug("Inviato stato a Mastodon..." + str(status))
         response = requests.post(
             f"{API_URL}/api/v1/statuses",
             headers={
