@@ -80,21 +80,21 @@ def main():
         return
 
     mastodon = MastodonHelper()
-    for document in to_publish:
-        logging.debug("Pubblicazione articolo " + document['title'])
-        logging.debug("Link: " + document['source_url'])
-        logging.debug("Note: " + document['notes'])
-        template_message = os.environ["MASTODON_MESSAGE_TEMPLATE"]
-        message = template_message.format(
-                      title=escape_string(document['title']),
-                      link=document['source_url'],
-                      notes=escape_string(document['notes'])
-                  )
-        try:
-            mastodon.post(message)
-            published_documents.append(document['id'])
-        except Exception as e:
-            logging.error(e)
+    document = to_publish[0]
+    logging.debug("Pubblicazione articolo " + document['title'])
+    logging.debug("Link: " + document['source_url'])
+    logging.debug("Note: " + document['notes'])
+    template_message = os.environ["MASTODON_MESSAGE_TEMPLATE"]
+    message = template_message.format(
+                  title=escape_string(document['title']),
+                  link=document['source_url'],
+                  notes=escape_string(document['notes'])
+              )
+    try:
+        mastodon.post(message)
+        published_documents.append(document['id'])
+    except Exception as e:
+        logging.error(e)
 
     dump_file(published_documents)
 
