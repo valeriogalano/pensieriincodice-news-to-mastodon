@@ -22,7 +22,7 @@ class MastodonHelper:
 
     def __send_mastodon_post(self, status: str):
         response = requests.post(
-            "https://mastodon.social/api/v1/statuses",
+            "https://mastodon.uno/api/v1/statuses",
             headers={
                 "Authorization": f"Bearer {self.token}"
             },
