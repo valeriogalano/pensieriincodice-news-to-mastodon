@@ -95,6 +95,7 @@ def main():
         published_documents.append(document['id'])
     except Exception as e:
         logging.error(e)
+        exit(1)
 
     dump_file(published_documents)
 
