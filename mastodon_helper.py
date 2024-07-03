@@ -23,7 +23,9 @@ class MastodonHelper:
                 "Authorization": f"Bearer {self.token}"
             },
             json={
-                'status': status
+                'status': status,
+                'media_ids': [],
+                'visibility': 'public',
             }
         )
 
