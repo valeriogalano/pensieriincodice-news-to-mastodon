@@ -24,7 +24,6 @@ class MastodonHelper:
             },
             json={
                 'status': status,
-                'media_ids': [],
                 'visibility': 'public',
             }
         )
