@@ -31,7 +31,7 @@ jobs:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
-          MASTODON_MESSAGE_TEMPLATE: ${{ secrets.MASTODON_MESSAGE_TEMPLATE }}
+          MASTODON_MESSAGE_TEMPLATE: ${{ vars.MASTODON_MESSAGE_TEMPLATE }}
           READWISE_ACCESS_TOKEN: ${{ secrets.READWISE_ACCESS_TOKEN }}
         run: python main.py
 
