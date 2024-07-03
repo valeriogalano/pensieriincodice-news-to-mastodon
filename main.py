@@ -32,6 +32,7 @@ def dump_file(published_documents):
 
 
 def escape_string(text_to_escape):
+    return text_to_escape # temporary solution, remove in future.
     translate_table = str.maketrans({
         '_': r'\_',
         '*': r'\*',
