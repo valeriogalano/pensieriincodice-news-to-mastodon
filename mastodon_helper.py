@@ -2,12 +2,8 @@ import logging
 import os
 
 import requests
-from tweepy.parsers import JSONParser
 
-TWEET_PARSER = JSONParser()
-TOKEN_ENDPOINT = "https://api.mastodon.social/oauth/token"
-AUTHORIZE_ENDPOINT = "https://api.mastodon.social/oauth/authorize"
-API_URL = 'https://api.mastodon.social'
+API_URL = 'https://mastodon.uno'
 
 logger = logging.getLogger("mastodon")
 
@@ -22,12 +18,12 @@ class MastodonHelper:
 
     def __send_mastodon_post(self, status: str):
         response = requests.post(
-            "https://mastodon.uno/api/v1/statuses",
+            f"{API_URL}/api/v1/statuses",
             headers={
                 "Authorization": f"Bearer {self.token}"
             },
             json={
-                'status': TWEET_PARSER.parse(status)
+                'status': status
             }
         )
 
