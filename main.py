@@ -91,6 +91,7 @@ def main():
                   notes=escape_string(document['notes'])
               )
     try:
+        logging.info('Pubblicazione articolo su Mastodon:' + message)
         mastodon.post(message)
         published_documents.append(document['id'])
     except Exception as e:
