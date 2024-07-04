@@ -29,7 +29,7 @@ class MastodonHelper:
             }
         )
 
-        if response.status_code != 201:
+        if response.status_code != 201 or response.status_code != 200:
             raise Exception(f"Error sending status: {response.text}")
 
     def post(self, status):
