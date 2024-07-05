@@ -17,7 +17,6 @@ class MastodonHelper:
         logger.debug("Mastodon helper inizializzato!")
 
     def __send_mastodon_post(self, status: str):
-        logger.debug("Inviato stato a Mastodon..." + str(status))
         response = requests.post(
             f"{API_URL}/api/v1/statuses",
             headers={
@@ -29,7 +28,7 @@ class MastodonHelper:
             }
         )
 
-        if response.status_code != 201 or response.status_code != 200:
+        if response.status_code != 201 and response.status_code != 200:
             raise Exception(f"Error sending status: {response.text}")
 
     def post(self, status):
