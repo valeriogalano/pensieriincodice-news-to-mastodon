@@ -17,6 +17,9 @@ class MastodonHelper:
         logger.debug("Mastodon helper inizializzato!")
 
     def __send_mastodon_post(self, status: str):
+        if len(status) > 500:
+            status = status[:497] + "..."
+
         response = requests.post(
             f"{API_URL}/api/v1/statuses",
             headers={
