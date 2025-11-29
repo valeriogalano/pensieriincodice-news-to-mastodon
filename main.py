@@ -94,11 +94,11 @@ def main():
     try:
         mastodon.post(message)
         published_documents.append(document['id'])
+        dump_file(published_documents)
     except Exception as e:
-        logging.error(e)
-        # exit(1)
-
-    dump_file(published_documents)
+        # Log the exception and fail the process so the GitHub Action marks the job as failed
+        logging.exception("Errore durante la pubblicazione su Mastodon: %s", e)
+        raise
 
     logging.debug("Bye!")
 
